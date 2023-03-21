@@ -18,7 +18,7 @@ export const ContainersList = () => {
       <h2>Containers List:</h2>
       <ListGroup>
         {containers.map((container) => (
-          <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start" key={container._id}>
+          <ListGroup.Item as="a" className="d-flex justify-content-between align-items-start" key={container._id} href={`/containers/${container._id}`}>
             <div className="ms-2 me-auto">
               <div className="fw-bold">{container.containerName}</div>
               {container.containerType}

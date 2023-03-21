@@ -9,10 +9,10 @@ const ContainerReferenceSchema = new SimpleSchema({
   id: String,
 });
 
+
 const ItemAttributesSchema = new SimpleSchema({
   brand: {
     type: String,
-    
   },
   model: {
     type: String,
@@ -25,17 +25,15 @@ const ItemAttributesSchema = new SimpleSchema({
   dimensions: new SimpleSchema({
     length: {
       type: Number,
-      label: "Length",
+      label: 'Length',
     },
     width: {
       type: Number,
-      label: "Width",
-
+      label: 'Width',
     },
     height: {
       type: Number,
-      label: "Height",
-
+      label: 'Height',
     },
   }),
   color: String,
@@ -44,19 +42,19 @@ const ItemAttributesSchema = new SimpleSchema({
     optional: true,
   },
   warranty: new SimpleSchema({
-      startDate: {
-        type: Date,
-        optional: true,
-      },
-      endDate: {
-        type: Date,
-        optional: true,
-      },
-      coverage: {
-        type: String,
-        optional: true,
-      },
-    }),
+    startDate: {
+      type: Date,
+      optional: true,
+    },
+    endDate: {
+      type: Date,
+      optional: true,
+    },
+    coverage: {
+      type: String,
+      optional: true,
+    },
+  }),
 });
 
 const ItemSchema = new SimpleSchema({
@@ -74,5 +72,6 @@ const ItemSchema = new SimpleSchema({
   },
   createdAt: Date,
 });
+
   
-  ItemsCollection.attachSchema(ItemSchema);
+ItemsCollection.attachSchema(ItemSchema);
