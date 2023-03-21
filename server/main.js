@@ -78,24 +78,27 @@ Meteor.startup(async () => {
   // If the Items collection is empty, add some data.
   if (await ItemsCollection.find().countAsync() === 0) {    
     await InsertItems({
-      itemType: "Electronics",
+      itemName: 'Laptop',
+      itemType: 'Electronics',
       itemWeight: 2.5,
-      itemDescription: "A high-performance laptop for everyday use",
+      itemDescription: 'A high-performance laptop with a powerful processor',
+      container: {
+        id: 'ABC123',
+      },
       itemAttributes: {
-        brand: "TechBrand",
-        model: "Laptop-X",
-        material: "Aluminum",
+        brand: 'Dell',
+        model: 'XPS 13',
+        material: 'Aluminum',
         dimensions: {
-          length: 35,
-          width: 24,
-          height: 2,
+          length: 12.0,
+          width: 8.0,
+          height: 0.6,
         },
-        color: "Silver",
-        expirationDate: null,
+        color: 'Silver',
         warranty: {
-          startDate: new Date("2023-03-19"),
-          endDate: new Date("2025-03-19"),
-          coverage: "Covers all hardware and software issues",
+          startDate: new Date('2022-01-01'),
+          endDate: new Date('2024-01-01'),
+          coverage: 'Covers defects in materials and workmanship',
         },
       },
     });

@@ -21,6 +21,8 @@ export const ItemsList = () => {
           <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start" key={item._id}>
             <div className="ms-2 me-auto">
               <div className="fw-bold">{item.itemName}</div>
+              {item._id}
+              <br></br>
               {item.itemType}
               <p>{item.itemDescription}</p>
             </div>

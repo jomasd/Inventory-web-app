@@ -1,12 +1,14 @@
 import { ItemsCollection } from '../items';
 
-export async function InsertItems({ itemName, itemType, itemWeight, itemDescription, itemAttributes }) {
+export async function InsertItems({ itemName, itemType, itemWeight, itemDescription, container, itemAttributes }) {
     await ItemsCollection.insertAsync({
       itemName,
       itemType,
       itemWeight,
       itemDescription,
-      containerId, 
+      container: {
+        id: container.id,
+      }, 
       itemAttributes: {
         brand: itemAttributes.brand,
         model: itemAttributes.model,
