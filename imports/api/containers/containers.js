@@ -12,6 +12,10 @@ const ContainerAttributesSchema = new SimpleSchema({
       length: { type: Number },
       width: { type: Number },
       height: { type: Number },
+      unit: {
+        type: String,
+        allowedValues: ['inches', 'meters']
+      }
     }),
   },
   color: { type: String },

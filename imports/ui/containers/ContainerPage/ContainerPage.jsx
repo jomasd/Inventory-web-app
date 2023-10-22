@@ -3,6 +3,10 @@ import { useParams } from 'react-router-dom';
 import { useTracker } from 'meteor/react-meteor-data';
 import { ContainersCollection } from '../../../api/containers/containers';
 
+// rewrite export to containe all data schema from the api file 
+// and then use the data in the return statement
+// use the data in the return statement to display the data on the page
+
 
 export const ContainerPage = () => {
  const { containerId } = useParams();

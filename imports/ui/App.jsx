@@ -14,7 +14,6 @@ import { ContainerPage } from './containers/ContainerPage/ContainerPage';
 
 
 export const App = () => (
-  <>
     <ThemeProvider breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']} minBreakpoint="xxs">
       <NavbarMain />
       <Router>
@@ -31,5 +30,4 @@ export const App = () => (
         </Container>
       </Router>
     </ThemeProvider>
-  </>
 );
