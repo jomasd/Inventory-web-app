@@ -6,3 +6,6 @@ import { ContainersCollection } from '../containers.js';
 Meteor.publish("containers", function () {
     return ContainersCollection.find();
 });
+Meteor.publish('container', function (containerId) {
+    return ContainersCollection.find({ _id: containerId });
+});
