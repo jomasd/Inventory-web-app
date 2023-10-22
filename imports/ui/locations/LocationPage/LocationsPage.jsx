@@ -14,6 +14,15 @@ const mockLocationsData = [
     itemTotal: 100,
     // ... other properties
   },
+  {
+    id: '2',
+    name: 'Location 2',
+    description: 'Description for Location 1',
+    totalRooms: 5,
+    containerTotal: 15,
+    itemTotal: 100,
+    // ... other properties
+  },
   // ... other locations
 ];
 

@@ -4,15 +4,15 @@ import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 
 // Import your components here
-import { ItemPage } from './items/ItemPage/ItemPage';
+import { ItemDetailsPage } from './items/ItemPage/ItemDetailsPage';
 import { ContainerDetailsPage } from './containers/ContainerPage/ContainerDetailsPage';
-import { ItemsList } from './items/ItemsList';
-import { ContainersList } from './containers/ContainersList';
+import { ItemsPage } from './items/ItemPage/ItemsPage';
 import { TradeLogsList } from './TradeLogs/TradeLogs';
 import { OwnersList } from './Owners/Owners';
 import InventoryPage from './Inventory/Inventory';
-import LocationsPage from './Locations/LocationsPage/LocationsPage';
+import { LocationsPage } from './Locations/LocationPage/LocationsPage';
 import LocationDetailsPage from './Locations/LocationPage/LocationDetailsPage';
+import { ContainersPage } from './containers/ContainerPage/ContainersPage';
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
@@ -60,16 +60,14 @@ export const App = () => {
               }}
             >
               <Routes>
-                <Route path="/" element={<ItemsList />} />
+                <Route path="/" element={<ItemsPage />} />
                 <Route path="/inventory" element={<InventoryPage />} />
-                <Route path="/items" element={<ItemsList />} />
-                <Route path="/items/:itemId" element={<ItemPage />} />
-                <Route path="/containers" element={<ContainersList />} />
+                <Route path="/items" element={<ItemsPage/>} />
+                <Route path="/items/:itemId" element={<ItemDetailsPage />} />
+                <Route path="/containers" element={<ContainersPage />} />
                 <Route path="/containers/:containerId" element={<ContainerDetailsPage />} />
                 <Route path="/locations" element={<LocationsPage />} />
                 <Route path="/locations/:locationId" element={<LocationDetailsPage />} />
-                <Route path="/locations/:locationId/containers/:containerId" element={<ContainerDetailsPage />} />
-                <Route path="/locations/:locationId/containers/:containerId/items/:itemId" element={<ItemPage />} />
                 <Route path="/trade-logs" element={<TradeLogsList />} />
                 <Route path="/owners" element={<OwnersList />} />
                 {/* More routes can be added here */}

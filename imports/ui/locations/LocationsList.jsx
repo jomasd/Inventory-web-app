@@ -12,7 +12,6 @@ const LocationsList = ({ locations }) => {
             <Card
               title={location.name}
               bordered={false}
-              style={{ width: 300 }}
               hoverable
             >
               <p>{location.description}</p>
