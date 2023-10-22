@@ -10,7 +10,7 @@ import '@material/web/button/filled-button.js';
 import '@material/web/button/outlined-button.js';
 import '@material/web/checkbox/checkbox.js';
 
-export const ContainerPage = () => {
+export const ContainerDetailsPage = () => {
   const { containerId } = useParams();
 
   const container = useTracker(() => {

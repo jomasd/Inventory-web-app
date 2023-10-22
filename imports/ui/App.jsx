@@ -5,13 +5,14 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 
 // Import your components here
 import { ItemPage } from './items/ItemPage/ItemPage';
-import { ContainerPage } from './containers/ContainerPage/ContainerPage';
+import { ContainerDetailsPage } from './containers/ContainerPage/ContainerDetailsPage';
 import { ItemsList } from './items/ItemsList';
 import { ContainersList } from './containers/ContainersList';
 import { TradeLogsList } from './TradeLogs/TradeLogs';
 import { OwnersList } from './Owners/Owners';
 import InventoryPage from './Inventory/Inventory';
-import LocationsPage from './locations/LocationPage/LocationsPage';
+import LocationsPage from './Locations/LocationsPage/LocationsPage';
+import LocationDetailsPage from './Locations/LocationPage/LocationDetailsPage';
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
@@ -64,10 +65,10 @@ export const App = () => {
                 <Route path="/items" element={<ItemsList />} />
                 <Route path="/items/:itemId" element={<ItemPage />} />
                 <Route path="/containers" element={<ContainersList />} />
-                <Route path="/containers/:containerId" element={<ContainerPage />} />
+                <Route path="/containers/:containerId" element={<ContainerDetailsPage />} />
                 <Route path="/locations" element={<LocationsPage />} />
-                <Route path="/locations/:locationId" element={<ContainersList />} />
-                <Route path="/locations/:locationId/containers/:containerId" element={<ContainerPage />} />
+                <Route path="/locations/:locationId" element={<LocationDetailsPage />} />
+                <Route path="/locations/:locationId/containers/:containerId" element={<ContainerDetailsPage />} />
                 <Route path="/locations/:locationId/containers/:containerId/items/:itemId" element={<ItemPage />} />
                 <Route path="/trade-logs" element={<TradeLogsList />} />
                 <Route path="/owners" element={<OwnersList />} />

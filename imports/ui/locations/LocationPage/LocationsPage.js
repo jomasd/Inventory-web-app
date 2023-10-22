@@ -1,7 +1,7 @@
 // LocationsPage.js
 import React, { useEffect, useState } from 'react';
 import { Row, Spin } from 'antd';
-import LocationsList from '../locationsList';
+import LocationsList from '../LocationsList';
 
 // Mock data for the locations. Each location has stats.
 const mockLocationsData = [
