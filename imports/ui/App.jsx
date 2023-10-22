@@ -8,11 +8,10 @@ import { ItemPage } from './items/ItemPage/ItemPage';
 import { ContainerPage } from './containers/ContainerPage/ContainerPage';
 import { ItemsList } from './items/ItemsList';
 import { ContainersList } from './containers/ContainersList';
-import { LocationsList } from './locations/locationsList';
 import { TradeLogsList } from './TradeLogs/TradeLogs';
 import { OwnersList } from './Owners/Owners';
 import InventoryPage from './Inventory/Inventory';
-
+import LocationsPage from './locations/LocationPage/LocationsPage';
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
@@ -66,7 +65,10 @@ export const App = () => {
                 <Route path="/items/:itemId" element={<ItemPage />} />
                 <Route path="/containers" element={<ContainersList />} />
                 <Route path="/containers/:containerId" element={<ContainerPage />} />
-                <Route path="/locations" element={<LocationsList />} />
+                <Route path="/locations" element={<LocationsPage />} />
+                <Route path="/locations/:locationId" element={<ContainersList />} />
+                <Route path="/locations/:locationId/containers/:containerId" element={<ContainerPage />} />
+                <Route path="/locations/:locationId/containers/:containerId/items/:itemId" element={<ItemPage />} />
                 <Route path="/trade-logs" element={<TradeLogsList />} />
                 <Route path="/owners" element={<OwnersList />} />
                 {/* More routes can be added here */}

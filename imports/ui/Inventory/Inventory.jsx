@@ -1,116 +1,130 @@
 import React, { useState } from 'react';
-import { Collapse, Card, Modal, Button } from 'antd';
+import { Collapse, Modal, Button, Tooltip } from 'antd';
+import { InfoCircleOutlined, PlusOutlined, MinusOutlined } from '@ant-design/icons';
 
 const { Panel } = Collapse;
 
-// Mock data for demonstration
-const locations = [
+// Sample mock data based on the schemas
+const mockLocations = [
   {
-    id: 1,
-    name: 'Ancient Cave',
+    _id: 'location1',
+    name: 'Warehouse A',
     containers: [
       {
-        id: 101,
-        name: 'Old Chest',
+        _id: 'container1',
+        name: 'Shelf A1',
         items: [
-          { id: 1001, name: 'Mystic Dagger', description: 'An ancient dagger emanating a strange energy.' },
-          // ... more items
+          {
+            _id: 'item1',
+            name: 'Product 1',
+            description: 'Description for Product 1',
+            category: 'Electronics',
+            quantity: 10,
+          },
+          // ... other items
         ],
       },
       {
-        id: 102,
-        name: 'Old Chest',
+        _id: 'container1',
+        name: 'Shelf A1',
         items: [
-          { id: 1001, name: 'Mystic Dagger', description: 'An ancient dagger emanating a strange energy.' },
-          { id: 1001, name: 'Mystic Dagger', description: 'An ancient dagger emanating a strange energy.' },
-          { id: 1001, name: 'Mystic Dagger', description: 'An ancient dagger emanating a strange energy.' },
-          // ... more items
+          {
+            _id: 'item1',
+            name: 'Product 1',
+            description: 'Description for Product 1',
+            category: 'Electronics',
+            quantity: 10,
+          },
+          // ... other items
         ],
       },
-      // ... more containers
+      // ... other containers
     ],
   },
-  {
-    id: 2,
-    name: 'Ancient Cave',
-    containers: [
-      {
-        id: 101,
-        name: 'Old Chest',
-        items: [
-          { id: 1001, name: 'Mystic Dagger', description: 'An ancient dagger emanating a strange energy.' },
-          // ... more items
-        ],
-      },
-      {
-        id: 102,
-        name: 'Old Chest',
-        items: [
-          { id: 1001, name: 'Mystic Dagger', description: 'An ancient dagger emanating a strange energy.' },
-          { id: 1001, name: 'Mystic Dagger', description: 'An ancient dagger emanating a strange energy.' },
-          { id: 1001, name: 'Mystic Dagger', description: 'An ancient dagger emanating a strange energy.' },
-          // ... more items
-        ],
-      },
-      // ... more containers
-    ],
-  },
-  // ... more locations
+  // ... other locations
 ];
 
-const InventoryPage = () => {
-  const [selectedItem, setSelectedItem] = useState(null);
+// Individual item with more detail and interactivity
+const ItemComponent = ({ item }) => {
+  const [modalVisible, setModalVisible] = useState(false);
+  const [itemCount, setItemCount] = useState(item.quantity);
 
-  const showItemDetails = (item) => {
-    setSelectedItem(item);
+  const showItemModal = () => {
+    setModalVisible(true);
   };
 
-  const handleModalClose = () => {
-    setSelectedItem(null);
+  const handleOk = () => {
+    setModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setModalVisible(false);
+  };
+
+  const increaseItem = () => {
+    setItemCount(itemCount + 1);
+    // Here, you would also handle any backend updates necessary
+  };
+
+  const decreaseItem = () => {
+    if (itemCount > 0) {
+      setItemCount(itemCount - 1);
+      // Here, you would also handle any backend updates necessary
+    }
   };
 
   return (
-    <div style={{ padding: '30px' }}>
-      <h1>Game Inventory</h1>
+    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <div>
+        <Tooltip title="Click for more info" color="blue">
+          <Button type="link" onClick={showItemModal} style={{ padding: 0 }}>
+            {item.name}
+          </Button>
+        </Tooltip>
+        <span> (Quantity: {itemCount})</span>
+      </div>
+      <div>
+        <Button icon={<PlusOutlined />} onClick={increaseItem} />
+        <Button icon={<MinusOutlined />} onClick={decreaseItem} />
+      </div>
 
-      <Collapse accordion>
-        {locations.map((location) => (
-          <Panel header={location.name} key={location.id}>
-            <Collapse>
-              {location.containers.map((container) => (
-                <Panel header={container.name} key={container.id}>
-                  {container.items.map((item) => (
-                    <Card
-                      key={item.id}
-                      title={item.name}
-                      extra={<Button onClick={() => showItemDetails(item)}>View Details</Button>}
-                    >
-                      <p>{item.description}</p>
-                    </Card>
-                  ))}
-                </Panel>
-              ))}
-            </Collapse>
-          </Panel>
-        ))}
-      </Collapse>
+      {/* Modal for displaying item details */}
+      <Modal title={item.name} visible={modalVisible} onOk={handleOk} onCancel={handleCancel}>
+        <p><strong>Description:</strong> {item.description}</p>
+        <p><strong>Category:</strong> {item.category}</p>
+        {/* Other item details here */}
+      </Modal>
+    </div>
+  );
+};
 
-      {/* Item detail modal */}
-      {selectedItem && (
-        <Modal
-          title={selectedItem.name}
-          visible={true}
-          onCancel={handleModalClose}
-          footer={[
-            <Button key="close" type="primary" onClick={handleModalClose}>
-              Close
-            </Button>,
-          ]}
-        >
-          <p>{selectedItem.description}</p>
-          {/* Here, you could add more detailed stats, perhaps in a table or list format */}
-        </Modal>
-      )}
+const ContainerComponent = ({ container }) => (
+  <Collapse>
+    <Panel header={container.name} key={container._id}>
+      {container.items.map(item => (
+        <ItemComponent key={item._id} item={item} />
+      ))}
+    </Panel>
+  </Collapse>
+);
+
+const LocationComponent = ({ location }) => (
+  <Collapse>
+    <Panel header={location.name} key={location._id}>
+      {location.containers.map(container => (
+        <ContainerComponent key={container._id} container={container} />
+      ))}
+    </Panel>
+  </Collapse>
+);
+
+const InventoryPage = () => {
+  return (
+    <div>
+      <h1>Inventory</h1>
+      {mockLocations.map(location => (
+        <LocationComponent key={location._id} location={location} />
+      ))}
     </div>
   );
 };
